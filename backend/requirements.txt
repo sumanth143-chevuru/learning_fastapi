@@ -1,0 +1,34 @@
+fastapi
+uvicorn
+
+#for templates
+jinja2
+
+#for static files
+aiofiles
+
+#for database
+sqlalchemy
+pymysql
+
+#for loading environment variables
+python-dotenv
+
+#for email validation
+pydantic[email]
+
+#hashing
+passlib[bcrypt]
+
+#for testing
+pytest
+requests
+
+#for creating jwt tokens
+python-jose
+
+#for  cleaning up codebase on each commit
+pre-commit
+
+#for accessing form data
+python-multipart
