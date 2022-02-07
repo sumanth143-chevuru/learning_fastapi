@@ -6,12 +6,13 @@ from db.base import Base
 from apis.base import api_router
 from webapps.base import api_router as web_app_router
 
-
+from db.utils import check_db_connected
+from db.utils import check_db_connected,check_db_disconnected
 
 def include_router(app):
 	app.include_router(api_router)
 	app.include_router(web_app_router)
-	
+
 
 def configure_static(app):
     app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -29,3 +30,11 @@ def start_application():
 	return app
 
 app = start_application()
+
+@app.on_event("startup")
+async def app_startup():
+    await check_db_connected()
+
+@app.on_event("shutdown")
+async def app_shutdown():
+    await check_db_disconnected()
